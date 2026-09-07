@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simran Arun Ingle — Senior Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #11171a;
+    --panel: #171f23;
+    --panel-2: #1c252a;
+    --text: #eae6dd;
+    --text-dim: #97a3a7;
+    --text-faint: #5f6b6f;
+    --gold: #c9a24b;
+    --teal: #7fa3a1;
+    --line: rgba(234,230,221,0.11);
+    --line-strong: rgba(234,230,221,0.22);
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'IBM Plex Mono', 'SF Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  .layout{
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    min-height:100vh;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  aside{
+    position:sticky;
+    top:0;
+    height:100vh;
+    padding:48px 36px;
+    border-right:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  .brand-name{
+    font-family:var(--serif);
+    font-size:1.7rem;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    line-height:1.25;
+  }
+  .brand-role{
+    margin-top:10px;
+    font-size:0.82rem;
+    color:var(--text-dim);
+    font-family:var(--mono);
+    line-height:1.6;
+  }
+
+  nav{margin-top:56px;}
+  nav ul{list-style:none; display:flex; flex-direction:column; gap:4px;}
+  nav a{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    padding:9px 0;
+    font-size:0.93rem;
+    color:var(--text-dim);
+    text-decoration:none;
+    border-left:2px solid transparent;
+    padding-left:12px;
+    margin-left:-13px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav a:hover, nav a.active{color:var(--text); border-left-color:var(--gold);}
+  nav a .idx{font-family:var(--mono); font-size:0.72rem; color:var(--text-faint);}
+  nav a.active .idx{color:var(--gold);}
+
+  .side-foot{font-family:var(--mono); font-size:0.78rem; color:var(--text-faint);}
+  .side-foot .contact-links{display:flex; flex-direction:column; gap:8px; margin-top:14px;}
+  .side-foot .contact-links a{color:var(--text-dim); text-decoration:none; word-break:break-all;}
+  .side-foot .contact-links a:hover{color:var(--gold);}
+  .status{display:flex; align-items:center; gap:8px; margin-bottom:18px; font-family:var(--mono); font-size:0.78rem; color:var(--text-dim);}
+  .status .dot{width:7px; height:7px; border-radius:50%; background:#7fbf8f; box-shadow:0 0 0 3px rgba(127,191,143,0.15);}
+
+  /* ---------- MOBILE TOPBAR ---------- */
+  .topbar{display:none;}
+  .mobile-nav{display:none;}
+
+  /* ---------- MAIN ---------- */
+  main{padding:64px 56px 120px; max-width:880px;}
+  section{padding-top:24px; margin-bottom:96px; scroll-margin-top:32px;}
+  section:last-of-type{margin-bottom:64px;}
+
+  .file-label{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    color:var(--text-faint);
+    margin-bottom:18px;
+  }
+  .file-label span{color:var(--gold);}
+
+  h2{
+    font-family:var(--serif);
+    font-size:2rem;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    margin-bottom:28px;
+    max-width:16ch;
+  }
+
+  /* HERO */
+  #hero{margin-bottom:110px;}
+  #hero h1{
+    font-family:var(--serif);
+    font-size:clamp(2.1rem, 4vw, 3.1rem);
+    font-weight:500;
+    line-height:1.18;
+    letter-spacing:-0.015em;
+    max-width:15ch;
+  }
+  #hero .lede{
+    margin-top:26px;
+    max-width:58ch;
+    font-size:1.05rem;
+    color:var(--text-dim);
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);
+    font-size:0.85rem;
+    padding:12px 20px;
+    border:1px solid var(--line-strong);
+    text-decoration:none;
+    transition:border-color .15s ease, background .15s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn.primary{background:var(--gold); color:#171001; border-color:var(--gold); font-weight:500;}
+  .btn.primary:hover{background:#dab668;}
+  .btn.ghost:hover{border-color:var(--gold); color:var(--gold);}
+
+  .hero-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    margin-top:56px;
+    border:1px solid var(--line);
+  }
+  .hero-stats div{background:var(--bg); padding:22px 20px;}
+  .hero-stats .num{font-family:var(--serif); font-size:1.9rem; color:var(--gold); font-weight:500;}
+  .hero-stats .lbl{font-family:var(--mono); font-size:0.72rem; color:var(--text-dim); margin-top:6px;}
+
+  /* EXPERIENCE */
+  .exp-block{border:1px solid var(--line); background:var(--panel); padding:32px 32px 8px;}
+  .exp-top{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:6px;}
+  .exp-role{font-family:var(--serif); font-size:1.3rem; font-weight:500;}
+  .exp-dates{font-family:var(--mono); font-size:0.78rem; color:var(--gold);}
+  .exp-co{color:var(--text-dim); font-size:0.95rem; margin-bottom:22px;}
+  .exp-list{list-style:none;}
+  .exp-list li{
+    position:relative;
+    padding:14px 0 14px 22px;
+    border-top:1px solid var(--line);
+    font-size:0.94rem;
+    color:var(--text);
+  }
+  .exp-list li::before{
+    content:"—";
+    position:absolute; left:0; top:14px;
+    color:var(--text-faint);
+    font-family:var(--mono);
+  }
+
+  /* PROJECTS */
+  .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .proj-card{background:var(--panel); padding:28px; display:flex; flex-direction:column;}
+  .proj-tag{font-family:var(--mono); font-size:0.68rem; color:var(--teal); text-transform:lowercase; margin-bottom:14px;}
+  .proj-name{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:10px;}
+  .proj-desc{font-size:0.9rem; color:var(--text-dim); flex-grow:1;}
+  .proj-stack{margin-top:18px; display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{
+    font-family:var(--mono); font-size:0.68rem; color:var(--text-dim);
+    border:1px solid var(--line-strong); padding:4px 8px;
+  }
+  @media (max-width:720px){.proj-grid{grid-template-columns:1fr;}}
+
+  .proj-more{margin-top:32px; border-top:1px solid var(--line); padding-top:24px;}
+  .proj-more-title{font-family:var(--mono); font-size:0.75rem; color:var(--text-faint); margin-bottom:14px;}
+  .proj-more ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .proj-more li{display:flex; gap:14px; font-size:0.9rem; color:var(--text-dim); align-items:baseline;}
+  .proj-more li b{color:var(--text); font-weight:500; font-family:var(--sans); min-width:180px;}
+
+  /* SKILLS */
+  .skill-row{display:grid; grid-template-columns:170px 1fr; gap:20px; padding:16px 0; border-top:1px solid var(--line); align-items:baseline;}
+  .skill-row:last-child{border-bottom:1px solid var(--line);}
+  .skill-cat{font-family:var(--mono); font-size:0.78rem; color:var(--text-faint);}
+  .skill-items{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-items .chip{color:var(--text);}
+
+  /* EDUCATION */
+  .edu-item{display:flex; justify-content:space-between; gap:20px; padding:18px 0; border-top:1px solid var(--line); flex-wrap:wrap;}
+  .edu-item:last-child{border-bottom:1px solid var(--line);}
+  .edu-name{font-weight:500;}
+  .edu-school{color:var(--text-dim); font-size:0.9rem; margin-top:3px;}
+  .edu-dates{font-family:var(--mono); font-size:0.78rem; color:var(--text-faint); white-space:nowrap;}
+
+  /* CONTACT */
+  #contact h2{max-width:none;}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); margin-top:8px;}
+  .contact-item{background:var(--panel); padding:26px 28px;}
+  .contact-item .k{font-family:var(--mono); font-size:0.72rem; color:var(--text-faint); margin-bottom:8px;}
+  .contact-item .v{font-size:1rem;}
+  .contact-item a{text-decoration:none;}
+  .contact-item a:hover{color:var(--gold);}
+  @media (max-width:600px){.contact-grid{grid-template-columns:1fr;}}
+
+  footer{padding:32px 56px; border-top:1px solid var(--line); font-family:var(--mono); font-size:0.75rem; color:var(--text-faint); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr;}
+    aside{display:none;}
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      position:sticky; top:0; z-index:10;
+      background:rgba(17,23,26,0.92); backdrop-filter:blur(6px);
+      padding:18px 24px; border-bottom:1px solid var(--line);
+    }
+    .topbar .brand-name{font-size:1.15rem;}
+    .topbar button{
+      background:none; border:1px solid var(--line-strong); color:var(--text);
+      font-family:var(--mono); font-size:0.78rem; padding:8px 14px;
+    }
+    .mobile-nav{
+      flex-direction:column;
+      background:var(--panel); border-bottom:1px solid var(--line);
+      padding:10px 24px 20px;
+    }
+    .mobile-nav.open{display:flex;}
+    .mobile-nav a{padding:10px 0; text-decoration:none; color:var(--text-dim); font-size:0.95rem; border-top:1px solid var(--line);}
+    main{padding:40px 22px 80px;}
+    .hero-stats{grid-template-columns:1fr; }
+    footer{padding:24px 22px; flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand-name">Simran Ingle</div>
+  <button id="menuBtn" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+</div>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#hero">Intro</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="layout">
+  <aside>
+    <div>
+      <div class="brand-name">Simran<br>Arun Ingle</div>
+      <div class="brand-role">Senior Software Developer<br>.NET · C# · Angular · SQL Server</div>
+      <nav>
+        <ul id="navList">
+          <li><a href="#hero" class="active"><span class="idx">01</span> Intro</a></li>
+          <li><a href="#experience"><span class="idx">02</span> Experience</a></li>
+          <li><a href="#projects"><span class="idx">03</span> Projects</a></li>
+          <li><a href="#skills"><span class="idx">04</span> Skills</a></li>
+          <li><a href="#education"><span class="idx">05</span> Education</a></li>
+          <li><a href="#contact"><span class="idx">06</span> Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="side-foot">
+      <div class="status"><span class="dot"></span> Open to new roles</div>
+      Hyderabad, India
+      <div class="contact-links">
+        <a href="mailto:IngleSimran0808@gmail.com">IngleSimran0808@gmail.com</a>
+        <a href="tel:+917028206897">+91 70282 06897</a>
+        <a href="https://linkedin.com/in/simran-ingle" target="_blank" rel="noopener">linkedin.com/in/simran-ingle</a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+
+    <section id="hero">
+      <div class="file-label"><span>//</span> about.md</div>
+      <h1>Full-stack .NET developer who ships enterprise software that HR teams actually rely on.</h1>
+      <p class="lede">4+ years building scalable web applications with ASP.NET Core, C#, Angular, and SQL Server — from secure REST APIs to the automation systems that run day-to-day HR operations for a growing workforce.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">4+</div><div class="lbl">years professional experience</div></div>
+        <div><div class="num">30%</div><div class="lbl">performance gain via query &amp; index tuning</div></div>
+        <div><div class="num">7</div><div class="lbl">enterprise systems shipped to production</div></div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="file-label"><span>//</span> experience.log</div>
+      <h2>Experience</h2>
+      <div class="exp-block">
+        <div class="exp-top">
+          <div class="exp-role">Senior Software Developer</div>
+          <div class="exp-dates">06/2022 — Present</div>
+        </div>
+        <div class="exp-co">Digitide Business Solutions · Hyderabad, India</div>
+        <ul class="exp-list">
+          <li>Built and shipped enterprise HR automation systems — FNF Automation, Rehire Automation, Aadhaar Seeding Portal, Employee Onboarding, and Transport Consent Form — used across the organization.</li>
+          <li>Designed scalable web applications with ASP.NET Core, C#, Angular, SQL Server, HTML5, CSS3, and JavaScript, applying SOLID principles, dependency injection, and the repository pattern.</li>
+          <li>Built and consumed secure RESTful APIs integrating internal systems with third-party platforms; documented and tested with Postman and Swagger.</li>
+          <li>Migrated legacy VB applications to ASP.NET (ASPX/ASHX), improving scalability, maintainability, and security.</li>
+          <li>Optimized SQL Server stored procedures, queries, and indexes — cutting application response time and improving overall performance by 30%.</li>
+          <li>Designed SSRS reports and dashboards for employee analytics and operational reporting; implemented authentication and authorization following OWASP secure coding practices.</li>
+          <li>Worked in an Agile Scrum team managing delivery through Jira, using GitHub Copilot and ChatGPT to speed up development without cutting corners on quality.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="file-label"><span>//</span> projects/</div>
+      <h2>Selected work</h2>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-tag">personal project</div>
+          <div class="proj-name">Online Banking System</div>
+          <div class="proj-desc">A secure banking platform with authentication and transaction modules, built to explore secure session handling and safe money-movement logic.</div>
+          <div class="proj-stack"><span class="chip">ASP.NET Core</span><span class="chip">SQL Server</span><span class="chip">Auth</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-tag">personal project</div>
+          <div class="proj-name">Travelo — Tours &amp; Travels</div>
+          <div class="proj-desc">A tour booking system with integrated payment gateway, focused on a smooth end-to-end booking flow and responsive UI.</div>
+          <div class="proj-stack"><span class="chip">Angular</span><span class="chip">Payment Gateway</span><span class="chip">REST API</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-tag">production system · digitide</div>
+          <div class="proj-name">FNF Automation</div>
+          <div class="proj-desc">Automated the full &amp; final settlement process for exiting employees, replacing a manual, error-prone workflow with a rules-driven system.</div>
+          <div class="proj-stack"><span class="chip">ASP.NET Core</span><span class="chip">SQL Server</span><span class="chip">SSRS</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-tag">production system · digitide</div>
+          <div class="proj-name">Employee Onboarding Portal</div>
+          <div class="proj-desc">A self-service onboarding application that brought document collection, approvals, and provisioning into one system for new hires.</div>
+          <div class="proj-stack"><span class="chip">Angular</span><span class="chip">Web API</span><span class="chip">SQL Server</span></div>
+        </div>
+      </div>
+
+      <div class="proj-more">
+        <div class="proj-more-title">Also shipped at Digitide</div>
+        <ul>
+          <li><b>Rehire Automation</b> Streamlined re-verification and workflow for returning employees.</li>
+          <li><b>Aadhaar Seeding Portal</b> Portal for linking and validating employee Aadhaar records.</li>
+          <li><b>Transport Consent Form</b> Digitized consent collection for employee transport logistics.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="file-label"><span>//</span> skills.json</div>
+      <h2>Skills</h2>
+      <div>
+        <div class="skill-row">
+          <div class="skill-cat">languages</div>
+          <div class="skill-items"><span class="chip">C#</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">SQL</span><span class="chip">HTML5</span><span class="chip">CSS3</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-cat">frameworks</div>
+          <div class="skill-items"><span class="chip">ASP.NET Core</span><span class="chip">Entity Framework</span><span class="chip">MVC</span><span class="chip">Angular</span><span class="chip">LINQ</span><span class="chip">Web API</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-cat">architecture</div>
+          <div class="skill-items"><span class="chip">Microservices</span><span class="chip">RESTful APIs</span><span class="chip">OOP</span><span class="chip">SOLID</span><span class="chip">Repository Pattern</span><span class="chip">Dependency Injection</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-cat">database</div>
+          <div class="skill-items"><span class="chip">SQL Server</span><span class="chip">Stored Procedures</span><span class="chip">Query Optimization</span><span class="chip">Indexing</span><span class="chip">SSRS</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-cat">devops &amp; tools</div>
+          <div class="skill-items"><span class="chip">CI/CD</span><span class="chip">IIS Deployment</span><span class="chip">Git</span><span class="chip">Postman</span><span class="chip">Swagger</span><span class="chip">Jira</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-cat">security</div>
+          <div class="skill-items"><span class="chip">Authentication</span><span class="chip">Authorization</span><span class="chip">OWASP</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-cat">ai-assisted dev</div>
+          <div class="skill-items"><span class="chip">GitHub Copilot</span><span class="chip">ChatGPT</span><span class="chip">Windsurf</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="file-label"><span>//</span> education.yml</div>
+      <h2>Education</h2>
+      <div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">B.E., Computer Science</div>
+            <div class="edu-school">Agnihotri College</div>
+          </div>
+          <div class="edu-dates">2018 — 2021</div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">Diploma, Computer Science</div>
+            <div class="edu-school">Dr. Panjabrao Deshmukh Polytechnic</div>
+          </div>
+          <div class="edu-dates">2015 — 2018</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="file-label"><span>//</span> contact.sh</div>
+      <h2>Let's work together</h2>
+      <p class="lede" style="margin-bottom:8px; max-width:60ch;">Currently open to Senior / Full-Stack .NET Developer roles. The fastest way to reach me is email or LinkedIn.</p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="k">email</div>
+          <div class="v"><a href="mailto:IngleSimran0808@gmail.com">IngleSimran0808@gmail.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="k">phone</div>
+          <div class="v"><a href="tel:+917028206897">+91 70282 06897</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="k">linkedin</div>
+          <div class="v"><a href="https://linkedin.com/in/simran-ingle" target="_blank" rel="noopener">linkedin.com/in/simran-ingle</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="k">location</div>
+          <div class="v">Hyderabad, India</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div>Simran Arun Ingle — Senior Software Developer</div>
+  <div>Built with HTML &amp; CSS</div>
+</footer>
+
+<script>
+  // mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    menuBtn.textContent = isOpen ? 'Close' : 'Menu';
+  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    menuBtn.textContent = 'Menu';
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // scrollspy for sidebar nav
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('#navList a');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = document.querySelector('#navList a[href="#' + entry.target.id + '"]');
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  sections.forEach(s => spy.observe(s));
+</script>
+
+</body>
+</html>
